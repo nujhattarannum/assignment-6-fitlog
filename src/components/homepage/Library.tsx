@@ -11,8 +11,12 @@ const Library = async() => {
     const workoutData = await getWorkouts();
 
     return (
-
-        <div className = " grid grid-cols-3 gap-2 container mx-auto p-4 md:p-8 bg-black">
+    <div className = "container mx-auto p-4 md:p-8 bg-black">
+        <div >
+        <h2 className = "text-2xl font-bold text-mist-50">THE LIBRARY</h2>
+        <p className = "text-gray-200">Twelve lifts covering every major muscle group</p>
+        </div>
+        <div className = " grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 my-8 ">
            { workoutData.map((item:Workout) => (
             <WorkoutCard 
             key = {item.id}
@@ -22,6 +26,7 @@ const Library = async() => {
         )
             ) }
         </div>
+      </div>  
     );
 };
 
