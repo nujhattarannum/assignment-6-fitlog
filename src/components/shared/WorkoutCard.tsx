@@ -2,17 +2,17 @@
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { Workout } from '@/types/workoutTypes';
+import { IWorkout } from '@/types/workoutTypes';
 
 
 interface WorkoutCardProps {
-  workout: Workout;
+  workout: IWorkout;
 }
 
 const WorkoutCard = ({ workout }: WorkoutCardProps) => {
   return (
     <Link
-      href={`/details/${workout.id}`}
+      href={`/details_page/${workout.id}`}
       className="group bg-[#121318] border border-zinc-800/80 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all duration-200 flex flex-col justify-between"
     >
       {/* Top Content Area */}

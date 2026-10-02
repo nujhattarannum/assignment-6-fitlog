@@ -1,5 +1,5 @@
 
-export interface Workout {
+export interface IWorkout {
   id: number;
   name: string;
   image: string;
