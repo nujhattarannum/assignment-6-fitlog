@@ -1,5 +1,5 @@
 import Banner from '@/components/homepage/Banner';
-import The_Library from '@/components/homepage/The_Library';
+import The_Library from '@/components/homepage/Library';
 import React from 'react';
 
 const page = () => {
