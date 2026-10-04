@@ -1,12 +1,11 @@
 import React from 'react';
 
-const page = () => {
+const loading = () => {
     return (
         <div>
-            my plan page
-            
+            Global loading...
         </div>
     );
 };
 
-export default page;
+export default loading;

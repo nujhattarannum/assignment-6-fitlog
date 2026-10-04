@@ -1,6 +1,8 @@
 import { IWorkout } from '@/types/workoutTypes';
 import React from 'react';
 import Image from "next/image";
+import AddToPlan from '@/components/workoutdetails/AddToPlan';
+import SavedButton from '@/components/workoutdetails/SavedButton';
 
  interface IdetailsProps{
     params: Promise<{
@@ -110,31 +112,9 @@ const page = async ({params}:IdetailsProps) => {
 
           {/* Action Buttons (DaisyUI) */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <button className="btn border-none bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl px-6">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Add to today&apos;s plan
-            </button>
+             <AddToPlan workout ={workout} />
 
-            <button className="btn btn-outline border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 font-bold text-xs uppercase tracking-wider rounded-xl px-6">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-              </svg>
-              Save for later
-            </button>
+            <SavedButton workout ={workout} />
           </div>
 
         </div>
