@@ -1,4 +1,5 @@
 'use client';
+import EmptyMyPlan from '@/components/shared/EmptyMyPlan';
 import ListedWorkoutCard from '@/components/shared/ListedWorkoutCard';
 import { workoutContext } from '@/context/workoutContext';
 import { IWorkout } from '@/types/workoutTypes';
@@ -15,6 +16,7 @@ const ListedWorkout = () => {
     console.log(  plannedWorkout , " my plan");
     console.log(  saved , " my plan");
 
+
     const sortworkouts =(workout:IWorkout[])=>{
        const sortedWorkouts = [...workout];
 
@@ -30,6 +32,9 @@ const ListedWorkout = () => {
     };
     const sortedPlan = sortworkouts(plannedWorkout);
       const sortedSaved = sortworkouts(saved);
+
+      const currentList = activeTab === 'today' ? sortedPlan : sortedSaved;
+
  return (
     <div className="min-h-screen text-base-content bg-black">
 
@@ -134,15 +139,20 @@ const ListedWorkout = () => {
 </div>
 
 {/* Render list separately based on activeTab */}
-<div className="mt-4 space-y-4">
-  {(activeTab === 'today' ? sortedPlan : sortedSaved).map((workout: IWorkout) => (
-    <ListedWorkoutCard 
-    key={workout.id} 
-    workout={workout}
-    isSavedTab={activeTab === 'saved'}
-     />
-  ))}
-</div>          
+{
+currentList.length === 0 ? (
+      <EmptyMyPlan />
+    ) : (
+      <div className="mt-4 space-y-4">
+        {currentList.map((workout: IWorkout) => (
+          <ListedWorkoutCard
+            key={workout.id}
+            workout={workout}
+            isSavedTab={activeTab === 'saved'}
+          />
+        ))}
+      </div>
+    )  }      
 
         </main>
     </div>

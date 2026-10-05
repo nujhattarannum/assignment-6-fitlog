@@ -1,7 +1,9 @@
 import { IWorkout } from '@/types/workoutTypes';
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { workoutContext } from '@/context/workoutContext';
 
 interface ListedWorkoutCardProps {
     workout: IWorkout;
@@ -9,6 +11,25 @@ interface ListedWorkoutCardProps {
 }
 
 const ListedWorkoutCard = ({ workout, isSavedTab = false }: ListedWorkoutCardProps) => {
+
+    const { plannedWorkout, setPlannedWorkout, saved, setSaved } = useContext(workoutContext);
+
+const handleMarkAsDone = () => {
+  // Filter out the done workout from plannedWorkout
+  setPlannedWorkout((prev:IWorkout[]) => prev.filter((item) => item.id !== workout.id));
+  toast.success(`"${workout.name}" marked as done! 🎉`);
+};
+
+const handleRemove = () => {
+  if (isSavedTab) {
+    setSaved((prev:IWorkout[]) => prev.filter((item) => item.id !== workout.id));
+    toast.info(`Removed "${workout.name}" from saved workouts.`);
+  } else {
+    setPlannedWorkout((prev:IWorkout[]) => prev.filter((item) => item.id !== workout.id));
+    toast.info(`Removed "${workout.name}" from today's plan.`);
+  }
+};
+
     return (
     <div className="card card-side w-full h-[168px] bg-base-100 border border-base-300 rounded-2xl p-6">
 
@@ -60,7 +81,7 @@ const ListedWorkoutCard = ({ workout, isSavedTab = false }: ListedWorkoutCardPro
     <div className="flex items-center gap-4 ml-auto">
 
         <Link
-            href={`/workouts/${workout.id}`}
+            href={`/details_page/${workout.id}`}
             className="btn btn-outline border-base-content/30 hover:bg-base-200 rounded-full px-7 h-12 min-h-0 text-base font-normal"
         >
             View Details
@@ -69,6 +90,7 @@ const ListedWorkoutCard = ({ workout, isSavedTab = false }: ListedWorkoutCardPro
         {/* Render Mark as Done only when NOT on Saved tab */}
         {!isSavedTab && (
             <button
+                onClick={handleMarkAsDone}
                 className="btn bg-lime-400 hover:bg-lime-300 border-none text-black rounded-full px-7 h-12 min-h-0 text-base font-semibold"
             >
                 ✓ &nbsp; Mark as Done
@@ -76,6 +98,7 @@ const ListedWorkoutCard = ({ workout, isSavedTab = false }: ListedWorkoutCardPro
         )}
 
         <button
+            onClick={handleRemove}
             className="btn btn-ghost btn-circle text-2xl text-base-content/40 hover:text-base-content"
         >
             ×
