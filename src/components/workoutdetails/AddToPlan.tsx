@@ -2,19 +2,15 @@
 import { workoutContext } from '@/context/workoutContext';
 import { IWorkout } from '@/types/workoutTypes';
 import React, { useContext } from 'react';
-import { toast } from 'react-toastify';
+
 
 const AddToPlan = ({ workout } :{ workout :IWorkout}) => {
 
-     const { setPlannedWorkout} = useContext(workoutContext);
+  const { addToPlan } = useContext(workoutContext);
 
-    const handleAddPlan = () =>{
-
-        console.log("add to plan button triggered",workout);
-        toast.success(`You have added "${workout.name}"`); 
-        setPlannedWorkout((prev) => [...prev, workout]);
-    
-    };
+  const handleAddPlan = () => {
+    addToPlan(workout);
+  };
    
     return (
           <button className="btn border-none bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl px-6" 

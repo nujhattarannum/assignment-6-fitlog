@@ -1,4 +1,5 @@
 'use client';
+
 import EmptyMyPlan from '@/components/shared/EmptyMyPlan';
 import ListedWorkoutCard from '@/components/shared/ListedWorkoutCard';
 import { workoutContext } from '@/context/workoutContext';
@@ -11,11 +12,10 @@ const ListedWorkout = () => {
 
     const { plannedWorkout , saved } = useContext(workoutContext);
     const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
-   const [ sortBy , setSortBy] = useState<"rating" | "duration" | "caloriesBurned">("rating");
-
-    console.log(  plannedWorkout , " my plan");
+    const [ sortBy , setSortBy] = useState<"duration" | "rating" | "caloriesBurned">("duration");
+     
+   console.log(  plannedWorkout , " my plan");
     console.log(  saved , " my plan");
-
 
     const sortworkouts =(workout:IWorkout[])=>{
        const sortedWorkouts = [...workout];
@@ -27,37 +27,35 @@ const ListedWorkout = () => {
        }else  if(sortBy === "caloriesBurned"){
         sortedWorkouts.sort((a,b)=> b.caloriesBurned - a.caloriesBurned);
        }
-
        return sortedWorkouts;
     };
+
     const sortedPlan = sortworkouts(plannedWorkout);
       const sortedSaved = sortworkouts(saved);
-
       const currentList = activeTab === 'today' ? sortedPlan : sortedSaved;
 
  return (
     <div className="min-h-screen text-base-content bg-black">
-
         {/* Main */}
+
         <main className="max-w-6xl mx-auto px-6 py-10">
 
             {/* Heading */}
+
             <div className="mb-7">
                 <h1 className="text-3xl font-bold text-white">
                     MY PLAN
                 </h1>
-
                 <p className="text-sm text-base-content/50 mt-1">
                     Cap of five lifts for today. Finish them, then load more.
                 </p>
             </div>
 
             {/* Statistics */}
+
             <div className="card bg-base-100 border border-base-300 shadow-sm">
                 <div className="card-body p-6">
-
                     <div className="grid grid-cols-3">
-
                         <div className="border-r border-base-300">
                             <p className="text-sm text-base-content/50">
                                 Exercises
@@ -73,8 +71,7 @@ const ListedWorkout = () => {
                             </p>
                             <p className="text-3xl text-white font-bold">
                                 {plannedWorkout.reduce(
-                                    (total, workout) => total + workout.duration,
-                                    0
+                                    (total, workout) => total + workout.duration,0
                                 )}
                             </p>
                         </div>
@@ -85,12 +82,10 @@ const ListedWorkout = () => {
                             </p>
                             <p className="text-3xl text-white font-bold">
                                 {plannedWorkout.reduce(
-                                    (total, workout) => total + workout.caloriesBurned,
-                                    0
+                                    (total, workout) => total + workout.caloriesBurned,0
                                 )}
                             </p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -107,7 +102,7 @@ const ListedWorkout = () => {
     aria-label="Today's Plan"
     checked={activeTab === 'today'}
     onChange={() => setActiveTab('today')}
-  />
+ />
 
   <input
     type="radio"
@@ -121,12 +116,10 @@ const ListedWorkout = () => {
 
   {/* Sort */}
     <div className="flex items-center gap-2">
-
         <span className="text-sm text-base-content/50">
             Sort By
         </span>
-
-        <select 
+        <select
         value={sortBy}
         onChange ={(e) => setSortBy (e.target.value as "rating" |"duration" |"caloriesBurned")}
         className="select select-bordered select-xs w-24 h-9 min-h-0 rounded-lg text-sm">
@@ -134,14 +127,13 @@ const ListedWorkout = () => {
             <option value={"caloriesBurned"}>Calories</option>
             <option value={"rating"}>Rating</option>
         </select>
-
     </div>
 </div>
 
 {/* Render list separately based on activeTab */}
 {
 currentList.length === 0 ? (
-      <EmptyMyPlan />
+          <EmptyMyPlan />
     ) : (
       <div className="mt-4 space-y-4">
         {currentList.map((workout: IWorkout) => (
@@ -153,9 +145,9 @@ currentList.length === 0 ? (
         ))}
       </div>
     )  }      
-
         </main>
     </div>
 );
 };
+
 export default ListedWorkout;

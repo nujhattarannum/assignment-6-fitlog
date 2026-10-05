@@ -100,7 +100,7 @@ const isMyPlanActive = pathname === '/myPlan' || pathname === '/my-plan';
      <div className="navbar-end w-auto flex items-center gap-3 md:gap-4">
     {/* Plan Badge (Filled Pill) */}
     <Link 
-      href="/my-plan" 
+      href="/myPlan" 
       className="flex items-center gap-1.5 md:gap-2 text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
     >
       <span>Plan</span>
@@ -111,7 +111,7 @@ const isMyPlanActive = pathname === '/myPlan' || pathname === '/my-plan';
 
     {/* Saved Badge (Outlined Pill) */}
     <Link 
-      href="/my-plan" 
+      href="/myPlan" 
       className="flex items-center gap-1.5 md:gap-2 text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
     >
       <span>Saved</span>
