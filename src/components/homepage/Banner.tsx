@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import logo from '@/assests/banner.png';
 import Image from "next/image";
@@ -28,7 +29,12 @@ const Banner = () => {
             </p>
 
             {/* DaisyUI CTA Button */}
-            <button className="btn bg-lime-400 hover:bg-lime-500 text-black font-extrabold border-none uppercase px-6 py-3 rounded-xl mt-4">
+            <button 
+            type ="button"
+            onClick={()=>{
+              document.getElementById('library')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="btn bg-lime-400 hover:bg-lime-500 text-black font-extrabold border-none uppercase px-6 py-3 rounded-xl mt-4">
               BROWSE WORKOUTS
             </button>
           </div>
