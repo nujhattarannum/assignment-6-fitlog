@@ -17,7 +17,7 @@ const Navbar = () => {
 
   // Helper booleans to detect active route
 const isWorkoutsActive = pathname === '/';
-const isMyPlanActive = pathname === '/myPlan' || pathname === '/my-plan';
+const isMyPlanActive = pathname === '/myPlan' 
 
   return (
     <nav className="navbar bg-black text-white px-4 md:px-8 py-3 md:py-4 flex items-center justify-between border-b border-zinc-800">

@@ -13,7 +13,8 @@ const AddToPlan = ({ workout } :{ workout :IWorkout}) => {
   };
    
     return (
-          <button className="btn border-none bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl px-6" 
+          <button className="btn w-full
+        sm:w-auto border-none bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl px-6" 
           onClick={handleAddPlan}>
               <svg
                 className="w-4 h-4"
